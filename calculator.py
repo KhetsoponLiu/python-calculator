@@ -7,11 +7,17 @@ class Calculator:
 
     def multiply(self, a, b):
         result = 0
+        is_negative = b < 0
+        b = abs(b)
         for i in range(b):  #แก้ไขจุดที่ 2 เปลี่ยนจาก b + 1 เป็น b
             result = self.add(result, a)
+        if is_negative:
+            result = -result
         return result
 
     def divide(self, a, b):
+        if b == 0:
+            raise ValueError("Error")
         result = 0
         while a >= b:   #แก้ไขจุดที่ 3 เปลี่ยนจาก > เป็น >=
             a = self.subtract(a, b)
@@ -19,6 +25,8 @@ class Calculator:
         return result
     
     def modulo(self, a, b):
+        if b == 0:
+            raise ValueError("Error")
         while a >= b:   #แก้ไขจุดที่ 4 เปลี่ยนจาก <= เป็น >=
             a = a-b
         return a
